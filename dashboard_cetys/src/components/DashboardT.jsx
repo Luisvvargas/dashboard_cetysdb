@@ -2,7 +2,7 @@ import React from 'react'
 
 function DashboardT() {
   return (
-    <div></div>
+    <div>dash</div>
   )
 }
 
