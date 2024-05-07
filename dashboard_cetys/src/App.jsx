@@ -1,13 +1,11 @@
-import React from 'react'
-import DashboardT from './components/DashboardT'
 
 function App() {
   return (
-    <div>
-      <DashboardT/>
+    <>
+      <div>
       
-      <div>tavo</div>
-    </div>
+      </div>
+    </>
    
 
 
