@@ -1,24 +1,17 @@
-import Bloques from "./components/bloques"
-import Layout from "./components/layout"
-import NavBar from "./components/navbar"
+import React from 'react'
+import DashboardT from './components/DashboardT'
 
 function App() {
-
   return (
-    <>
-      <div className="bg-secondary min-h-screen">
-          <NavBar>
-            
-          </NavBar>
-          <Layout>
-            <p>lorep xdxdxdx ipsum jajaja lol xdxdxdx</p>
-            <p>lorep xdxdxdx ipsum jajaja lol xdxdxdx</p>
-            <p>lorep xdxdxdx ipsum jajaja lol xdxdxdx</p>
+    <div>
+      <DashboardT/>
+      
+      <div>tavo</div>
+    </div>
+   
 
-          </Layout>
-          <Bloques></Bloques>
-      </div>
-    </>
+
+    /* Esta es la pagina de santiago, aqui vas a hacer el login que nos va a llevar a los componentes */ 
   )
 }
 
