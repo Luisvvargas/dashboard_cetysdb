@@ -1,12 +1,10 @@
 import React from 'react'
 import DashboardT from './components/DashboardT'
+import Unumber from './components/unumber'
 
 function App() {
   return (
-    <div>
-      <DashboardT/>
-      
-      <div>tavo</div>
+    <div className='p-0 m-0'>
     </div>
    
 
