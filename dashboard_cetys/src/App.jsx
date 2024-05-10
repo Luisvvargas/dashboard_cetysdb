@@ -11,7 +11,7 @@ function App() {
         <Route path='/' element={<LoginForm/>}/>
         <Route path='/Usuario' element={<Unumber/>}/>
         <Route path='/Empleado' element={<DashboardMain/>}/>
-        <Rounte path='/Admin' element={<DashboardAdmin/>}/>
+        {/* <Rounte path='/Admin' element={<DashboardAdmin/>}/> */}
       </Routes>
     </BrowserRouter>
     </div>
