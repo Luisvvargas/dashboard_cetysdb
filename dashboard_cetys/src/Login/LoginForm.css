@@ -38,9 +38,9 @@ code{
 .wrapper h1 {
     font-size: 34px;
     text-align: center;
-    padding-bottom: 15px;
-    text-shadow: 2px 2px 4px rgba(167, 174, 186, 0.429);
-    font-family: 'Arial Rounded MT Bold', Arial, sans-serif; /* Web-safe rounded font */
+    padding-bottom: 25px;
+    text-shadow: 2px 2px 4px rgba(243, 241, 215, 0.429);
+    font-weight: bolder;
 }
 
 
@@ -71,7 +71,8 @@ code{
 }
 
 .wrapper button:hover {
-    background-color: #ffd000; 
+    background-color: #000000; 
+    color: #ffd000;
     animation: bounce 1s;
 }
 
