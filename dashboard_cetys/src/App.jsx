@@ -1,9 +1,6 @@
-// import NavBar from './navbar'
-import Iniciocont from './components/iniciocont';
-import InicioWelcome from './components/iniciowelcome';
-import LoginForm from './components/LoginForm'
-import NavBar from './components/navbar';
-import Unumber from './components/unumber';
+import DashboardMain from './Empleados/Admin/DashboardMain';
+import LoginForm from './Login/LoginForm'
+import Unumber from './Usuarios/unumber';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -13,10 +10,8 @@ function App() {
       <Routes>
         <Route path='/' element={<LoginForm/>}/>
         <Route path='/Usuario' element={<Unumber/>}/>
-        {/* <Route path='/Empleado' element={<NavBar/>}/> */}
-        <Route path='/Empleado' element={<Iniciocont/>}/>
-        <Route path='/Empleado' element={<InicioWelcome/>}/>
-        {/* <Route path='/Admin' element={<Unumber/>}/> */}
+        <Route path='/Empleado' element={<DashboardMain/>}/>
+        <Rounte path='/Admin' element={<DashboardAdmin/>}/>
       </Routes>
     </BrowserRouter>
     </div>
