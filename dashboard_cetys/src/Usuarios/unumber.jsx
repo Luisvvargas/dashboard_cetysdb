@@ -39,10 +39,7 @@ function Unumber() {
     if(inputRef.current){
       inputRef.current.value = '';
       inputRef.current.blur();
-
-
     }
-
   };
 
   return (
