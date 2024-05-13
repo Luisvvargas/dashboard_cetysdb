@@ -4,14 +4,12 @@ function Unumber() {
   // Create a ref for the input
   const inputRef = useRef(null);
 
-
   // Function to focus input when the span is clicked
   const focusInput = () => {
     if (inputRef.current) {
       inputRef.current.focus(); // Focus the input field
     }
   };
-
 
   const handleKeydown = (event) => {
     console.log('keypressed', event.key);
@@ -22,8 +20,6 @@ function Unumber() {
     }else{
       focusInput();
     }
-
-
   };
 
   useEffect(() => {
@@ -39,8 +35,6 @@ function Unumber() {
     if(inputRef.current){
       inputRef.current.value = '';
       inputRef.current.blur();
-
-
     }
 
   };
@@ -55,6 +49,8 @@ function Unumber() {
       <div className='flex justify-center w-full mt-8'>
         <button id='boton' onClick={buttonpressed} className='bg-[#50C878] text-gray-800 rounded-[10px] px-16 py-6 font-[Poppins, sans-serif] text-[50px] hover:bg-opacity-90 hover:text-gray-700 hover:scale-90 transitions shadow-xl'>Enter</button>
       </div>
+
+
 
       <div className='absolute bottom-0 right-0 p-7'>
         <i class="fa-solid fa-angle-up fa-3x"></i>
