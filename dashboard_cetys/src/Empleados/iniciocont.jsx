@@ -27,4 +27,4 @@ const Iniciocont = () =>{
   )
 }
 
-export default Iniciocont
+export default Iniciocont;
