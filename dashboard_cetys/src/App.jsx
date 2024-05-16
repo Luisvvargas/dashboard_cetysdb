@@ -4,7 +4,9 @@ import NavBar from './Empleados/navbar';
 import DashboardMain from './Empleados/DashboardMain';
 import DashboardMainAdmin from './Administradores/DashboardAdminMain';
 import Ingresos from './Apartados/Ingresos';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Welcome from './Usuarios/welcome';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
+
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path='/Admin' element={<DashboardMainAdmin/>}/>
         <Route path='/NavBar' element={<NavBar/>}/> 
         <Route path='/Ingresos' element={<Ingresos/>}/>
+        <Route path='/welcome' element={<Welcome/>}/>
+
       </Routes>
     </BrowserRouter>
     </div>
