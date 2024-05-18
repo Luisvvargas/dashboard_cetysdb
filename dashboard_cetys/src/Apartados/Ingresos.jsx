@@ -1,17 +1,16 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faChartSimple, faNoteSticky, faArrowRightFromBracket} from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faChartSimple, faNoteSticky, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
-
-const Ingresos = () => {
+const DashMain = () => {
   const [open, setOpen] = useState(false);
   const Menus = [
-    { title: "Inicio", src: <FontAwesomeIcon icon={faHouse} size="lg"/> },
-    { title: "Ingresos", src: <FontAwesomeIcon icon={faChartSimple} size="lg"/>},
-    { title: "Reportes", src: <FontAwesomeIcon icon={faNoteSticky} size="lg"/>},
-    { title: "Log Out", src: <FontAwesomeIcon icon={faArrowRightFromBracket} size="lg"/>}
-   
+    { title: "Inicio", src: <FontAwesomeIcon icon={faHouse} size="lg" /> },
+    { title: "Ingresos", src: <FontAwesomeIcon icon={faChartSimple} size="lg" /> },
+    { title: "Reportes", src: <FontAwesomeIcon icon={faNoteSticky} size="lg" /> },
   ];
+
+  const LogoutMenu = { title: "Log Out", src: <FontAwesomeIcon icon={faArrowRightFromBracket} size="lg" /> };
 
   const handleMenuClick = (title) => {
     switch(title) {
@@ -36,7 +35,7 @@ const Ingresos = () => {
   return (
     <div className="flex">
       <div
-        className={`${open ? "w-40" : "w-20"} bg-black h-screen p-5 pt-8 relative duration-300`}
+        className={`${open ? "w-40" : "w-20"} bg-black h-screen p-5 pt-8 relative duration-300 flex flex-col`}
       >
         <img
           src="./src/assets/control.png"
@@ -50,27 +49,30 @@ const Ingresos = () => {
             className={`cursor-pointer duration-500 ${open && "rotate-[360deg]"}`}
           />
         </div>
-        <ul className="pt-6">
-  {Menus.map((menu, index) => (
-    <li
-      key={index}
-      onClick={() => handleMenuClick(menu.title)}
-      className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
-      ${menu.gap ? "mt-9" : "mt-2"} ${index === 0 && "bg-light-white"}`}
-    >
-      {/* Conditional rendering to check if src is a string or JSX element */}
-      {typeof menu.src === "string" ? (
-        <img src={`./src/assets/${menu.src}.png`} alt={menu.title} />
-      ) : (
-        <span className="icon">{menu.src}</span>
-      )}
-      <span className={`${!open && "hidden"} origin-left duration-200`}>
-        {menu.title}
-      </span>
-    </li>
-  ))}
-</ul>
-
+        <ul className="pt-6 flex-1">
+          {Menus.map((menu, index) => (
+            <li
+              key={index}
+              onClick={() => handleMenuClick(menu.title)}
+                className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white hover:text-[#FFD000] text-gray-300 text-m items-center gap-x-4 
+                ${menu.gap ? "mt-9" : "mt-2"} ${index === 0 && "bg-light-white"}`}
+              >
+              <span className="icon">{menu.src}</span>
+              <span className={`${!open && "hidden"} origin-left duration-200`}>
+                {menu.title}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <div
+          onClick={() => handleMenuClick(LogoutMenu.title)}
+          className="mt-auto p-2 cursor-pointer hover:text-[#FFD000] text-gray-300 flex rounded-md items-center gap-x-4 text-m"
+        >
+          <span className="icon">{LogoutMenu.src}</span>
+          <span className={`${!open && "hidden"} origin-left duration-200`}>
+            {LogoutMenu.title}
+          </span>
+        </div>
       </div>
       <div className="h-screen flex-1 p-7">
         <h1 className="text-2xl font-semibold ">Inicio</h1>
@@ -79,4 +81,4 @@ const Ingresos = () => {
   );
 };
 
-export default Ingresos;
+export default DashMain;
