@@ -9,8 +9,38 @@
     transition: ease 0.3s;
 }
 
+
 input[type="text"]:focus ~ .input-text{
-    @apply text-blue-500 bg-white transform -translate-y-36 -translate-x-96;
+    @apply text-blue-500 bg-white transform -translate-y-36 -translate-x-96 opacity-100;
 
 
 }
+
+/* Initial state of entering the element */
+.fade-enter {
+    opacity: 1;
+}
+
+/* Transition for entering element */
+.fade-enter-active {
+    opacity: 0;
+    transition: ease-in;
+    transform: translate(0px, 150px);
+}
+
+/* Initial state of exiting the element */
+.fade-exit {
+    opacity: 1;
+}
+
+/* Transition for exiting element */
+.fade-exit-active {
+    opacity: 0;
+    transition: ease-out 150ms;
+    transform: translate(0px, 150px);
+}
+
+.transition-move {
+    transition: transform ease 0.5s;
+  }
+  
