@@ -1,12 +1,11 @@
-import Iniciocont from "./iniciocont";
-import InicioWelcome from "./iniciowelcome";
-import NavBar from "./navbar";
-
+import InicioEmp from "./InicioEmpleados"
+import Iniciocont from "./iniciocont"
+import InicioWelcome from "./iniciowelcome"
 
 function DashboardMain(){
     return(
         <div>
-            <NavBar></NavBar>
+            <InicioEmp></InicioEmp>
             <Iniciocont></Iniciocont>
             <InicioWelcome></InicioWelcome>
         </div>

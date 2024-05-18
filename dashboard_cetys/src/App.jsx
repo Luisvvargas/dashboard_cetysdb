@@ -1,12 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DashboardMainAdmin from './Administradores/DashboardAdminMain';
-import Ingresos from './Apartados/Ingresos';
 import DashboardMain from './Empleados/DashboardMain';
-import NavBar from './Empleados/navbar';
 import LoginForm from './Login/LoginForm';
 import Unumber from './Usuarios/unumber';
 import Welcome from './Usuarios/welcome';
-
 
 function App() {
   return (
@@ -17,8 +14,6 @@ function App() {
         <Route path='/Usuario' element={<Unumber/>}/>
         <Route path='/Empleado' element={<DashboardMain/>}/>
         <Route path='/Admin' element={<DashboardMainAdmin/>}/>
-        <Route path='/NavBar' element={<NavBar/>}/> 
-        <Route path='/Ingresos' element={<Ingresos/>}/>
         <Route path='/welcome' element={<Welcome/>}/>
 
       </Routes>

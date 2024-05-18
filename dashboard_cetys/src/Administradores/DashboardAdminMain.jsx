@@ -1,12 +1,12 @@
-import InicioWelcomeAdmin from "./iniciowelcomeAdmin";
+import InicioAd from "./InicioAdmin";
 import IniciocontAdmin from "./iniciocontAdmin";
-import NavBarAdmin from "./navbarAdmin";
+import InicioWelcomeAdmin from "./iniciowelcomeAdmin";
 
 
 function DashboardMainAdmin(){
     return(
         <div>
-            <NavBarAdmin></NavBarAdmin>
+            <InicioAd></InicioAd>
             <IniciocontAdmin></IniciocontAdmin>
             <InicioWelcomeAdmin></InicioWelcomeAdmin>
         </div>
