@@ -1,7 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import DashboardMainAdmin from './Administradores/DashboardAdminMain';
-import DashboardMain from './Empleados/DashboardMain';
-import LoginForm from './Login/LoginForm';
+
+import DashboardMainAdmin from './Administradores/DashboardAdminMain'; //MAIN ADMIN
+import DashboardMain from './Empleados/DashboardMain'; //MAIN EMPLEADO
+
+import LoginForm from './Login/LoginForm'; //MAIN LOGIN opc
 import Unumber from './Usuarios/unumber';
 import Welcome from './Usuarios/welcome';
 
