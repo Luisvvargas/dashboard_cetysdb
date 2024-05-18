@@ -1,6 +1,6 @@
-import InicioWelcome from "./iniciowelcome";
+import NavBar from "../navbar";
 import Iniciocont from "./iniciocont";
-import NavBar from "./navbar";
+import InicioWelcome from "./iniciowelcome";
 
 function DashboardMain(){
     return(

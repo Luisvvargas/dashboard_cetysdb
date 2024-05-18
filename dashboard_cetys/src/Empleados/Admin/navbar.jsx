@@ -1,4 +1,5 @@
 import React from "react";
+
 const NavBar = () => {
   return (
     <header className="text-gray-600 body-font bg-cover bg-black">

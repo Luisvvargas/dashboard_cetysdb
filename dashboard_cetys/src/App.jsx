@@ -1,7 +1,7 @@
-import DashboardMain from './Empleados/Admin/DashboardMain';
-import LoginForm from './Login/LoginForm'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import DashboardMain from './Empleados/Admin/Inicio/DashboardMain';
+import LoginForm from './Login/LoginForm';
 import Unumber from './Usuarios/unumber';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <Route path='/' element={<LoginForm/>}/>
         <Route path='/Usuario' element={<Unumber/>}/>
         <Route path='/Empleado' element={<DashboardMain/>}/>
-        <Rounte path='/Admin' element={<DashboardAdmin/>}/>
+        {/* <Rounte path='/Admin' element={<DashboardAdmin/>}/> */}
       </Routes>
     </BrowserRouter>
     </div>
