@@ -2,7 +2,7 @@ import { faArrowRightFromBracket, faChartSimple, faHouse, faNoteSticky } from '@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from "react";
 
-const DashMain = () => {
+const InicioAd = () => {
   const [open, setOpen] = useState(false);
   const Menus = [
     { title: "Inicio", src: <FontAwesomeIcon icon={faHouse} size="lg" /> },
@@ -81,4 +81,4 @@ const DashMain = () => {
   );
 };
 
-export default DashMain;
+export default InicioAd;

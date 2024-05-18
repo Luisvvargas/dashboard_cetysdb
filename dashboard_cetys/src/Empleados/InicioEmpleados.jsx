@@ -1,23 +1,41 @@
+import { faArrowRightFromBracket, faChartSimple, faHouse, faNoteSticky } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from "react";
+
 const InicioEmp = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const Menus = [
-    { title: "Dashboard", src: "Chart_fill" },
-    { title: "Inbox", src: "Chat" },
-    { title: "Accounts", src: "User", gap: true },
-    { title: "Schedule ", src: "Calendar" },
-    { title: "Search", src: "Search" },
-    { title: "Analytics", src: "Chart" },
-    { title: "Files ", src: "Folder", gap: true },
-    { title: "Setting", src: "Setting" },
+    { title: "Inicio", src: <FontAwesomeIcon icon={faHouse} size="lg" /> },
+    { title: "Ingresos", src: <FontAwesomeIcon icon={faChartSimple} size="lg" /> },
+    { title: "Reportes", src: <FontAwesomeIcon icon={faNoteSticky} size="lg" /> },
   ];
+
+  const LogoutMenu = { title: "Log Out", src: <FontAwesomeIcon icon={faArrowRightFromBracket} size="lg" /> };
+
+  const handleMenuClick = (title) => {
+    switch(title) {
+      case "Dashboard":
+        console.log("Dashboard");
+        break;
+      case "Inicio":
+        console.log("Inicio");
+        break;
+      case "Ingresos":
+        console.log("Ingresos");
+        break;
+      case "Reportes":
+        console.log("Reportes");
+        break;
+      case "Log Out":
+        console.log("Log Out");
+        break;
+    }
+  };
 
   return (
     <div className="flex">
       <div
-        className={` ${
-          open ? "w-40" : "w-20 "
-        } bg-black h-screen p-5  pt-8 relative duration-300`}
+        className={`${open ? "w-40" : "w-20"} bg-black h-screen p-5 pt-8 relative duration-300 flex flex-col`}
       >
         <img
           src="./src/assets/control.png"
@@ -28,27 +46,33 @@ const InicioEmp = () => {
         <div className="flex gap-x-4 items-center">
           <img
             src="./src/assets/logo.png"
-            className={`cursor-pointer duration-500 ${
-              open && "rotate-[360deg]"
-            }`}
+            className={`cursor-pointer duration-500 ${open && "rotate-[360deg]"}`}
           />
         </div>
-        <ul className="pt-6">
-          {Menus.map((Menu, index) => (
+        <ul className="pt-6 flex-1">
+          {Menus.map((menu, index) => (
             <li
               key={index}
-              className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
-              ${Menu.gap ? "mt-9" : "mt-2"} ${
-                index === 0 && "bg-light-white"
-              } `}
-            >
-              <img src={`./src/assets/${Menu.src}.png`} />
+              onClick={() => handleMenuClick(menu.title)}
+                className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white hover:text-[#FFD000] text-gray-300 text-m items-center gap-x-4 
+                ${menu.gap ? "mt-9" : "mt-2"} ${index === 0 && "bg-light-white"}`}
+              >
+              <span className="icon">{menu.src}</span>
               <span className={`${!open && "hidden"} origin-left duration-200`}>
-                {Menu.title}
+                {menu.title}
               </span>
             </li>
           ))}
         </ul>
+        <div
+          onClick={() => handleMenuClick(LogoutMenu.title)}
+          className="mt-auto p-2 cursor-pointer hover:text-[#FFD000] text-gray-300 flex rounded-md items-center gap-x-4 text-m"
+        >
+          <span className="icon">{LogoutMenu.src}</span>
+          <span className={`${!open && "hidden"} origin-left duration-200`}>
+            {LogoutMenu.title}
+          </span>
+        </div>
       </div>
       <div className="h-screen flex-1 p-7">
         <h1 className="text-2xl font-semibold ">Inicio</h1>
@@ -56,4 +80,5 @@ const InicioEmp = () => {
     </div>
   );
 };
+
 export default InicioEmp;
