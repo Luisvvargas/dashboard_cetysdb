@@ -2,6 +2,9 @@ import { faArrowRightFromBracket, faChartSimple, faHouse, faNoteSticky } from '@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from "react";
 
+// Navegate
+import { useNavigate } from "react-router-dom"
+
 // IMPORTS PARA GRAFICAS
 import { CategoryScale, Chart as ChartJS, Legend, LineElement, LinearScale, PointElement, Title, Tooltip } from 'chart.js';
 import { Line } from 'react-chartjs-2';
@@ -17,8 +20,10 @@ ChartJS.register(
 );
 
 const InicioAd = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [matricula, setMatricula] = useState('');
+
 
   const Menus = [
     { title: "Inicio", src: <FontAwesomeIcon icon={faHouse} size="lg" style={{ color: "#FFD000" }} /> },
@@ -30,23 +35,24 @@ const InicioAd = () => {
 
   const handleMenuClick = (title) => {
     switch (title) {
-      case "Dashboard":
-        console.log("Dashboard");
-        break;
       case "Inicio":
         console.log("Inicio");
         break;
       case "Ingresos":
         console.log("Ingresos");
+        navigate("Ingresos")
         break;
       case "Reportes":
+        navigate("Reportes")
         console.log("Reportes");
         break;
       case "Log Out":
+        navigate("/")
         console.log("Log Out");
         break;
     }
   };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
