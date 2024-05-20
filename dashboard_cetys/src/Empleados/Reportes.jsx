@@ -47,9 +47,9 @@ const Reportes = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Reportes</h1>
-      <div className="flex">
-        <div className="w-1/2 p-4 border-r border-gray-300 shadow-lg">
+      <h1 className="text-2xl font-bold mb-4 text-center">Reportes</h1>
+      <div className="flex justify-center">
+        <div className="w-1/3 p-4 border-2 border-gray-400 shadow-2xl m-2">
           <div className="mb-4">
             <label className="block text-lg font-medium mb-2">Selecciona los tipos de información</label>
             {Object.keys(sections).map(section => (
@@ -68,7 +68,7 @@ const Reportes = () => {
             ))}
           </div>
         </div>
-        <div className="w-1/2 p-4 shadow-lg">
+        <div className="w-1/3 p-4 border-2 border-gray-400 shadow-2xl m-2">
           <div className="mb-4">
             <label className="block text-lg font-medium mb-2">Selecciona la fecha de inicio</label>
             <input
@@ -111,9 +111,12 @@ const Reportes = () => {
         onClick={handleExport}
         className="mt-4 px-4 py-2 bg-black text-white rounded hover:bg-[#FFD000] hover:text-black"
         disabled={selectedSections.length === 0}
-      >
-        Export to CSV
+        >
+        Exportar a CSV
       </button>
+      <div className="mt-8">
+        <img src="https://basecamplive.com/wp-content/uploads/2023/02/books.jpeg" alt="Library" className="w-full h-auto rounded-lg shadow-lg"/>
+      </div>
     </div>
   );
 };
