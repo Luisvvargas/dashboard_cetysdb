@@ -73,7 +73,7 @@ const Reportes = () => {
             <label className="block text-lg font-medium mb-2">Selecciona la fecha de inicio</label>
             <input
               type="date"
-              className="form-input mt-1 block w-full bg-gray-200"
+              className="form-input mt-1 block w-full bg-gray-100 rounded-lg"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
             />
@@ -82,7 +82,7 @@ const Reportes = () => {
             <label className="block text-lg font-medium mb-2">Selecciona la fecha de finalización</label>
             <input
               type="date"
-              className="form-input mt-1 block w-full bg-gray-200"
+              className="form-input mt-1 block w-full bg-gray-100 rounded-lg"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
             />
@@ -91,7 +91,7 @@ const Reportes = () => {
             <label className="block text-lg font-medium mb-2">Selecciona la hora de inicio</label>
             <input
               type="time"
-              className="form-input mt-1 block w-full bg-gray-200"
+              className="form-input mt-1 block w-full bg-gray-100 rounded-lg"
               value={startTime}
               onChange={(e) => setStartTime(e.target.value)}
             />
@@ -100,7 +100,7 @@ const Reportes = () => {
             <label className="block text-lg font-medium mb-2">Selecciona la hora de finalización</label>
             <input
               type="time"
-              className="form-input mt-1 block w-full bg-gray-200"
+              className="form-input mt-1 block w-full bg-gray-100 rounded-lg"
               value={endTime}
               onChange={(e) => setEndTime(e.target.value)}
             />

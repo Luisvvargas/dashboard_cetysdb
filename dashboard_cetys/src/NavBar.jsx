@@ -13,7 +13,7 @@ const NB = () => {
   const [matricula, setMatricula] = useState('');
 
   const Menus = [
-    { title: "Inicio", src: <FontAwesomeIcon icon={faHouse} size="lg" style={{ color: "#FFD000" }} /> },
+    { title: "Inicio", src: <FontAwesomeIcon icon={faHouse} size="lg" /> },
     { title: "Ingresos", src: <FontAwesomeIcon icon={faChartSimple} size="lg" /> },
     { title: "Reportes", src: <FontAwesomeIcon icon={faNoteSticky} size="lg" /> },
   ];
@@ -41,6 +41,9 @@ const NB = () => {
     }
   };
 
+  const styles = () => {
+
+  }
   const options = {
     responsive: true,
     plugins: {
