@@ -43,7 +43,7 @@ const InicioEmp = () => {
         break;
       case "Reportes":
         navigate("/Reportes")
-        console.log("Reportes");
+        console.log("/Reportes");
         break;
       case "Log Out":
         navigate("/")
