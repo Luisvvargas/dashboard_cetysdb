@@ -15,7 +15,7 @@ const LoginForm = () => {
         <form>
           <h1>Login</h1>
           <div className="BAdmin">
-              <button onClick={()=> navigate('/Admin')}>Administrador</button>
+              <button onClick={()=> navigate('/Empleado')}>Administrador</button>
           </div>
           <div className="BTrabajador">
             <button onClick={() => navigate('/Empleado')}>Empleado</button>

@@ -52,7 +52,6 @@ const InicioEmp = () => {
     }
   };
 
-
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Matrícula ingresada:", matricula);
@@ -61,11 +60,11 @@ const InicioEmp = () => {
 
   // DATA GRAFICAS
   const data = {
-    labels: ['Escuela de Ingeniería', 'Escuela de Negocios', 'Preparatoria', 'Posgrado', 'Empleados'],
+    labels: ['8 AM', '11 AM', '2 PM', '5 PM', '8 PM'], // Actualizamos las etiquetas para el eje X
     datasets: [
       {
         label: 'Entradas de hoy',
-        data: [65, 59, 80, 81, 56],
+        data: [15, 38, 78, 105, 159], // Datos incrementando conforme a la hora
         backgroundColor: 'rgba(245, 232, 39, 0.44)',
         borderColor: 'rgba(255, 208, 0, 1)',
         borderWidth: 2,
@@ -86,6 +85,21 @@ const InicioEmp = () => {
       title: {
         display: true,
         text: 'Distribución por Escuela',
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: 'Hora del día',
+        },
+      },
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Entradas del día',
+        },
       },
     },
   };
@@ -141,7 +155,7 @@ const InicioEmp = () => {
             <section className="text-gray-600 body-font flex-grow">
               <div className="container mx-auto">
                 <div className="flex flex-wrap -m-4 text-center">
-                  {["2.7K Users", "1.8K Subscribes", "35 Downloads", "4 Products"].map((item, index) => (
+                  {["159 Hoy", "762 Semana", "2.3K Mes", "4.7K Semestre"].map((item, index) => (
                     <div className="p-4 sm:w-1/4 w-1/2" key={index}>
                       <div className="px-6 py-4 bg-white shadow-xl rounded-lg">
                         <h2 className="title-font font-medium sm:text-4xl text-3xl text-gray-900">{item.split(' ')[0]}</h2>
