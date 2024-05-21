@@ -11,7 +11,7 @@ const Ingresos = () => {
     { matricula: 13308, name: 'Carlos Andres Trasviña Moreno', tipo: 'Profesor', area: 'Profesional', hora: '17:13:10' },
     { matricula: 12456, name: 'Andrea Parra Nuñez', tipo: 'Alumni', area: 'Preparatoria', hora: '17:08:24' },
     { matricula: 12201, name: 'Jose Arcadio Ceja Pasos', tipo: 'Alumni', area: 'Profesional', hora: '16:46:27' },
-    { matricula: 12089, name: 'Ana Paula Casillas Suarez', tipo: 'Estudiante', area: 'Profesional', hora: '16:14:58' },
+    { matricula: 12088, name: 'Ana Paula Casillas Suarez', tipo: 'Estudiante', area: 'Profesional', hora: '16:14:58' },
     { matricula: 12089, name: 'Luis Armando Vargas Peña', tipo: 'Estudiante', area: 'Profesional', hora: '16:15:12' },
     { matricula: 14089, name: 'Stephania Ramos Nuñez', tipo: 'Estudiante', area: 'Profesional', hora: '15:55:49' },
     { matricula: 11679, name: 'Axel Moises Caldera Garcia', tipo: 'Estudiante', area: 'Profesional', hora: '15:49:08' },
