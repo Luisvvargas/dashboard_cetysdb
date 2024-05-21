@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from "react";
 
 // Navegate
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -58,9 +58,9 @@ const NB = () => {
   };
 
   return (
-    <div className="flex bg-gray-50">
+    <div className="flex bg-gray-50 min-h-screen">
       <div
-        className={`${open ? "w-40" : "w-20"} bg-black h-screen p-5 pt-8 relative duration-300 flex flex-col`}
+        className={`${open ? "w-40" : "w-20"} bg-black p-5 pt-8 relative duration-300 flex flex-col`}
       >
         <img
           src="./src/assets/control.png"

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from "react";
 
 // Navegate
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 // IMPORTS PARA GRAFICAS
 import { CategoryScale, Chart as ChartJS, Legend, LineElement, LinearScale, PointElement, Title, Tooltip } from 'chart.js';
