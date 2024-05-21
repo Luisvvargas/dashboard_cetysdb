@@ -100,7 +100,7 @@ const Ingresos = () => {
       </div>
 
       {showForm && (
-        <div className="mb-4 p-4 border rounded-md dark:bg-gray-700 dark:border-gray-600 transition duration-200 ease-in-out transform">
+        <div className="mb-4 p-4 border rounded-md dark:bg-gray-700 dark:border-gray-600 transition duration-200 ease-in-out transform scale-95 opacity-0 animate-slide-up">
           <h2 className="text-lg font-medium mb-4 dark:text-white">Agregar Nuevo Visitante</h2>
           <div className="grid grid-cols-1 gap-4">
             <input

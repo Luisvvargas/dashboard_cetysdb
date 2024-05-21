@@ -1,5 +1,5 @@
 import NB from "../NavBar";
-import Ingresos from "./Ingresos";
+import Ingresos from "./IngresosEmpleados";
 
 function IngresosApp(){
     return(
