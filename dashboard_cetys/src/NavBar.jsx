@@ -58,7 +58,7 @@ const NB = () => {
   };
 
   return (
-    <div className="flex bg-gray-50">
+    <div className="flex bg-gray-50 h-screen fixed">
       <div
         className={`${open ? "w-40" : "w-20"} bg-black p-5 pt-8 relative duration-300 flex flex-col`}
       >

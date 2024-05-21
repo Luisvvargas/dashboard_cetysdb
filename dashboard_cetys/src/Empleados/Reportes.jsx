@@ -110,7 +110,7 @@ const Reportes = () => {
       <div className="flex justify-center mt-4">
         <button
           onClick={handleExport}
-          className="px-4 py-2 bg-black text-white rounded hover:bg-[#FFD000] hover:text-black"
+          className="px-4 py-2 bg-black text-white rounded hover:bg-[#FFD000] hover:text-black hover:scale-110 transition-transform transition-colors duration-300 ease-in-out"
           disabled={selectedSections.length === 0}
         >
           Exportar a CSV

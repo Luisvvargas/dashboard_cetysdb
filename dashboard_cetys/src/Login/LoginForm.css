@@ -73,7 +73,7 @@ code{
 .wrapper button:hover {
     background-color: #000000; 
     color: #ffd000;
-    animation: bounce 1s;
+    animation: shake 1s;
 }
 
 .foto {
@@ -90,11 +90,9 @@ code{
     to { background-color: #ffd000; } 
 }
 
-@keyframes bounce {
-    0%, 90% {
-        transform: scale(0.95); /* Start and end at original size */
-    }
-    50% {
-        transform: scale(1.1); /* Enlarge to 110% in the middle of the animation */
-    }
-}
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+  }
