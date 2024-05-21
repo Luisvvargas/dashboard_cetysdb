@@ -63,13 +63,24 @@ const InicioEmp = () => {
     labels: ['8 AM', '11 AM', '2 PM', '5 PM', '8 PM'], // Actualizamos las etiquetas para el eje X
     datasets: [
       {
-        label: 'Entradas de hoy',
-        data: [15, 38, 78, 105, 159], // Datos incrementando conforme a la hora
+        label: 'Entradas hoy',
+        data: [10, 38, 60, 105, 159], // Datos incrementando conforme a la hora
         backgroundColor: 'rgba(245, 232, 39, 0.44)',
         borderColor: 'rgba(255, 208, 0, 1)',
         borderWidth: 2,
         pointBackgroundColor: 'rgba(255,255,255,1)', // White points
         pointBorderColor: 'rgba(0,0,0,0.8)', // Black borders for points
+        pointBorderWidth: 1,
+        pointRadius: 3,
+      },
+      {
+        label: 'Entradas ayer   ',
+        data: [18, 20, 82, 90, 180], // Datos para la nueva línea
+        backgroundColor: 'rgba(161, 209, 255, 0.8)',
+        borderColor: 'rgba(92, 167, 240, .8)',
+        borderWidth: 2,
+        pointBackgroundColor: 'rgba(255,255,255,1)',
+        pointBorderColor: 'rgba(0,0,0,0.8)',
         pointBorderWidth: 1,
         pointRadius: 3,
       },
@@ -83,8 +94,8 @@ const InicioEmp = () => {
         position: 'top',
       },
       title: {
-        display: true,
-        text: 'Distribución por Escuela',
+        display: false,
+        text: '',
       },
     },
     scales: {
@@ -98,6 +109,7 @@ const InicioEmp = () => {
         beginAtZero: true,
         title: {
           display: true,
+          fontStyle: 'bold',
           text: 'Entradas del día',
         },
       },
@@ -174,7 +186,7 @@ const InicioEmp = () => {
                 placeholder="Ingrese matrícula"
                 className="px-4 py-2 border rounded-md"
               />
-              <button type="submit" className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded transition duration-200">
+              <button type="submit" className="bg-black hover:bg-[#FFD000] hover:text-black text-white font-bold py-2 px-4 rounded transition duration-200">
                 Enviar
               </button>
             </form>
