@@ -5,8 +5,6 @@ import { useState } from "react";
 // Navegate
 import { useNavigate } from "react-router-dom"
 
-
-
 const NB = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);

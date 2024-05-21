@@ -107,13 +107,15 @@ const Reportes = () => {
           </div>
         </div>
       </div>
-      <button
-        onClick={handleExport}
-        className="mt-4 px-4 py-2 bg-black text-white rounded hover:bg-[#FFD000] hover:text-black"
-        disabled={selectedSections.length === 0}
+      <div className="flex justify-center mt-4">
+        <button
+          onClick={handleExport}
+          className="px-4 py-2 bg-black text-white rounded hover:bg-[#FFD000] hover:text-black"
+          disabled={selectedSections.length === 0}
         >
-        Exportar a CSV
-      </button>
+          Exportar a CSV
+        </button>
+      </div>
       <div className="mt-8">
         <img src="https://basecamplive.com/wp-content/uploads/2023/02/books.jpeg" alt="Library" className="w-full h-auto rounded-lg shadow-lg"/>
       </div>
