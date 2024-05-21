@@ -133,7 +133,7 @@ const Ingresos = () => {
               <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]">Tipo</th>
               <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]">Escuela</th>
               <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]">Hora</th>
-              <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]">Acciones</th>
+              <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]"></th>
             </tr>
           </thead>
           <tbody>
