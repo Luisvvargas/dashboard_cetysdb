@@ -6,8 +6,8 @@ const Ingresos = () => {
     { matricula: 13542, name: 'Josue Martinez Romero', tipo: 'Empleado', area: 'Profesional', hora: '18:51:02' },
     { matricula: 11435, name: 'Ivanna Carolina Vargas Peña', tipo: 'Estudiante', area: 'Preparatoria', hora: '18:48:43' },
     { matricula: 10342, name: 'Santiago Mercurio Camarena Renau', tipo: 'Estudiante', area: 'Profesional', hora: '18:44:59' },
-    { matricula: 10322, name: 'Vladimir Ivan Vargas Ruiz', tipo: 'Visitante', area: '-', hora: '18:44:12' },
-    { matricula: 13705, name: 'Laura Carolina Peña Sanchez', tipo: 'Visitante', area: '-', hora: '18:01:33' },
+    { matricula: 10322, name: 'Vladimir Ivan Vargas Ruiz', tipo: 'Alumni', area: 'Profesional', hora: '18:44:12' },
+    { matricula: 13705, name: 'Laura Carolina Peña Sanchez', tipo: 'Alumni', area: 'Profesional', hora: '18:01:33' },
     { matricula: 13308, name: 'Carlos Andres Trasviña Moreno', tipo: 'Profesor', area: 'Profesional', hora: '17:13:10' },
     { matricula: 12456, name: 'Andrea Parra Nuñez', tipo: 'Alumni', area: 'Preparatoria', hora: '17:08:24' },
     { matricula: 12201, name: 'Jose Arcadio Ceja Pasos', tipo: 'Alumni', area: 'Profesional', hora: '16:46:27' },
@@ -77,30 +77,32 @@ const Ingresos = () => {
           placeholder="Buscar..."
           value={searchTerm}
           onChange={handleSearch}
-          className="mb-2 md:mb-0 md:mr-4 px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white transition duration-200 ease-in-out transform focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="mb-2 md:mb-0 md:mr-4 px-4 py-2 border border-gray-300 rounded-md dark:bg-black dark:border-gray-600 dark:text-white transition duration-200 ease-in-out transform focus:ring-2 focus:ring-[#FFD000] focus:border-[#FFD000]"
         />
-        <select
-          value={filter}
-          onChange={handleFilter}
-          className="px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white transition duration-200 ease-in-out transform focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-        >
-          <option value="Todos">Todos</option>
-          <option value="Estudiante">Estudiante</option>
-          <option value="Empleado">Empleado</option>
-          <option value="Profesor">Profesor</option>
-          <option value="Visitante">Visitante</option>
-          <option value="Alumni">Alumni</option>
-        </select>
-        <button
-          onClick={() => setShowForm(!showForm)}
-          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 dark:bg-blue-800 dark:hover:bg-blue-900 transition duration-200 ease-in-out transform hover:scale-105 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-        >
-          {showForm ? 'Cerrar' : 'Agregar Visitante'}
-        </button>
+        <div className="flex items-center space-x-2">
+          <select
+            value={filter}
+            onChange={handleFilter}
+            className="px-4 py-2 border border-gray-300 rounded-md dark:bg-black dark:border-gray-600 dark:text-white transition duration-200 ease-in-out transform focus:ring-2 focus:ring-[#FFD000] focus:border-[#FFD000]"
+          >
+            <option value="Todos">Todos</option>
+            <option value="Estudiante">Estudiante</option>
+            <option value="Empleado">Empleado</option>
+            <option value="Profesor">Profesor</option>
+            <option value="Visitante">Visitante</option>
+            <option value="Alumni">Alumni</option>
+          </select>
+          <button
+            onClick={() => setShowForm(!showForm)}
+            className="px-4 py-2 bg-black text-white rounded-md hover:text-black dark:hover:bg-[#FFD000] transition duration-200 ease-in-out transform hover:scale-105 focus:ring-2"
+          >
+            {showForm ? 'Cerrar' : 'Agregar Visitante'}
+          </button>
+        </div>
       </div>
 
       {showForm && (
-        <div className="mb-4 p-4 border rounded-md dark:bg-gray-700 dark:border-gray-600 transition duration-200 ease-in-out transform scale-95 opacity-0 animate-slide-up">
+        <div className="mb-4 p-4 border rounded-md dark:bg-black dark:border-black transition duration-200 ease-in-out transform scale-95 opacity-0 animate-slide-up">
           <h2 className="text-lg font-medium mb-4 dark:text-white">Agregar Nuevo Visitante</h2>
           <div className="grid grid-cols-1 gap-4">
             <input
@@ -109,11 +111,11 @@ const Ingresos = () => {
               placeholder="Nombre del Visitante"
               value={newVisitorName}
               onChange={handleChange}
-              className="px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white transition duration-200 ease-in-out transform focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-100 dark:border-gray-600 dark:text-black transition duration-200 ease-in-out transform focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
             <button
               onClick={handleAddUser}
-              className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 dark:bg-green-800 dark:hover:bg-green-900 transition duration-200 ease-in-out transform hover:scale-105 focus:ring-2 focus:ring-green-500 focus:outline-none"
+              className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 dark:bg-green-800 dark:hover:bg-green-900 transition duration-200 ease-in-out transform hover:scale-95 focus:ring-2 focus:ring-green-500 focus:outline-none"
             >
               Agregar Visitante
             </button>
@@ -122,29 +124,29 @@ const Ingresos = () => {
       )}
 
       <div className="shadow-md rounded-lg overflow-hidden flex-1">
-        <table className="min-w-full bg-white dark:bg-gray-800">
-          <thead className="bg-gray-50 dark:bg-gray-700">
+        <table className="min-w-full bg-white dark:bg-gray-100">
+          <thead className="bg-gray-50 dark:bg-black">
             <tr>
-              <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-white">Matricula</th>
-              <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-white">Nombre</th>
-              <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-white">Tipo</th>
-              <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-white">Escuela</th>
-              <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-white">Hora</th>
-              <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-white">Acciones</th>
+              <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]">Matricula</th>
+              <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]">Nombre</th>
+              <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]">Tipo</th>
+              <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]">Escuela</th>
+              <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]">Hora</th>
+              <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]">Acciones</th>
             </tr>
           </thead>
           <tbody>
             {filteredData.map((row) => (
               <tr key={row.matricula} className="border-b dark:border-gray-700">
-                <td className="py-2 px-4 text-sm text-gray-900 dark:text-white">{row.matricula}</td>
-                <td className="py-2 px-4 text-sm text-gray-900 dark:text-white">{row.name}</td>
-                <td className="py-2 px-4 text-sm text-gray-900 dark:text-white">{row.tipo}</td>
-                <td className="py-2 px-4 text-sm text-gray-900 dark:text-white">{row.area}</td>
-                <td className="py-2 px-4 text-sm text-gray-900 dark:text-white">{row.hora}</td>
-                <td className="py-2 px-4 text-sm text-gray-900 dark:text-white">
+                <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-extrabold">{row.matricula}</td>
+                <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">{row.name}</td>
+                <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">{row.tipo}</td>
+                <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">{row.area}</td>
+                <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">{row.hora}</td>
+                <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">
                   <button
                     onClick={() => handleDeleteUser(row.matricula)}
-                    className="px-2 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 dark:bg-red-800 dark:hover:bg-red-900 transition duration-200 ease-in-out transform hover:scale-105 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                    className="px-2 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-900 transition duration-200 ease-in-out transform hover:scale-105 focus:ring-2 focus:ring-red-500 focus:outline-none"
                   >
                     Eliminar
                   </button>
@@ -159,8 +161,3 @@ const Ingresos = () => {
 };
 
 export default Ingresos;
-
-
-
-
-
