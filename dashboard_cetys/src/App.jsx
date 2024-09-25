@@ -22,7 +22,7 @@ function App() {
         <Route path='/welcome' element={<Welcome/>}/>
         <Route path='/reportes' element={<ReportesApp/>}/>
         <Route path='/ingresos' element={<IngresosApp/>}/>
-        
+        <Route path='/Tools' element={<IngresosApp/>}/>
 
       </Routes>
     </BrowserRouter>

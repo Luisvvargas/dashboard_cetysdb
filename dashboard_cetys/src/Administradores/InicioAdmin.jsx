@@ -1,9 +1,9 @@
-import { faArrowRightFromBracket, faChartSimple, faHouse, faNoteSticky } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightFromBracket, faChartSimple, faHouse, faNoteSticky, faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from "react";
 
 // Navegate
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 // IMPORTS PARA GRAFICAS
 import { CategoryScale, Chart as ChartJS, Legend, LineElement, LinearScale, PointElement, Title, Tooltip } from 'chart.js';
@@ -26,8 +26,9 @@ const InicioAd = () => {
 
 
   const Menus = [
-    { title: "Inicio", src: <FontAwesomeIcon icon={faHouse} size="lg" style={{ color: "#FFD000" }} /> },
+    { title: "Inicio", src: <FontAwesomeIcon icon={faHouse} size="lg" /> },
     { title: "Ingresos", src: <FontAwesomeIcon icon={faChartSimple} size="lg" /> },
+    { title: "Tools", src: <FontAwesomeIcon icon={faScrewdriverWrench} size='lg'/> },
     { title: "Reportes", src: <FontAwesomeIcon icon={faNoteSticky} size="lg" /> },
   ];
 
@@ -37,18 +38,23 @@ const InicioAd = () => {
     switch (title) {
       case "Inicio":
         console.log("Inicio");
+        navigate("/Empleado")
         break;
       case "Ingresos":
         console.log("Ingresos");
-        navigate("Ingresos")
+        navigate("/Ingresos")
         break;
       case "Reportes":
-        navigate("Reportes")
+        navigate("/Reportes")
         console.log("Reportes");
+        break;
+      case "Tools":
+        navigate("/Tools")
+        console.log("Tools");
         break;
       case "Log Out":
         navigate("/")
-        console.log("Log Out");
+        console.log("/Log Out");
         break;
     }
   };
