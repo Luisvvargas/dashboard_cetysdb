@@ -1,11 +1,9 @@
-import { faArrowRightFromBracket, faChartSimple, faHouse, faNoteSticky } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightFromBracket, faChartSimple, faHouse, faNoteSticky, faScrewdriverWrench } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from "react";
 
 // Navegate
 import { useNavigate } from "react-router-dom";
-
-
 
 const NB = () => {
   const navigate = useNavigate();
@@ -15,6 +13,7 @@ const NB = () => {
   const Menus = [
     { title: "Inicio", src: <FontAwesomeIcon icon={faHouse} size="lg" /> },
     { title: "Ingresos", src: <FontAwesomeIcon icon={faChartSimple} size="lg" /> },
+    { title: "Tools", src: <FontAwesomeIcon icon={faScrewdriverWrench} size='lg'/> },
     { title: "Reportes", src: <FontAwesomeIcon icon={faNoteSticky} size="lg" /> },
   ];
 
@@ -33,6 +32,10 @@ const NB = () => {
       case "Reportes":
         navigate("/Reportes")
         console.log("Reportes");
+        break;
+      case "Tools":
+        navigate("/Tools")
+        console.log("Tools");
         break;
       case "Log Out":
         navigate("/")
