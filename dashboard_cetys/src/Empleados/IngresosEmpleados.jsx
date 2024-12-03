@@ -1,34 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
+import { SocketContext } from '../context/SocketContext';
 
 const Ingresos = () => {
-  const initialData = [
-    { matricula: 12453, name: 'Jorge Octavio Chavez Rivero', tipo: 'Estudiante', area: 'Profesional', hora: '18:51:33' },
-    { matricula: 13542, name: 'Josue Martinez Romero', tipo: 'Empleado', area: 'Profesional', hora: '18:51:02' },
-    { matricula: 11435, name: 'Ivanna Carolina Vargas Peña', tipo: 'Estudiante', area: 'Preparatoria', hora: '18:48:43' },
-    { matricula: 10342, name: 'Santiago Mercurio Camarena Renau', tipo: 'Estudiante', area: 'Profesional', hora: '18:44:59' },
-    { matricula: 10322, name: 'Vladimir Ivan Vargas Ruiz', tipo: 'Alumni', area: 'Profesional', hora: '18:44:12' },
-    { matricula: 13705, name: 'Laura Carolina Peña Sanchez', tipo: 'Alumni', area: 'Profesional', hora: '18:01:33' },
-    { matricula: 13308, name: 'Carlos Andres Trasviña Moreno', tipo: 'Profesor', area: 'Profesional', hora: '17:13:10' },
-    { matricula: 12456, name: 'Andrea Parra Nuñez', tipo: 'Alumni', area: 'Preparatoria', hora: '17:08:24' },
-    { matricula: 12201, name: 'Jose Arcadio Ceja Pasos', tipo: 'Alumni', area: 'Profesional', hora: '16:46:27' },
-    { matricula: 12088, name: 'Ana Paula Casillas Suarez', tipo: 'Estudiante', area: 'Profesional', hora: '16:14:58' },
-    { matricula: 12089, name: 'Luis Armando Vargas Peña', tipo: 'Estudiante', area: 'Profesional', hora: '16:15:12' },
-    { matricula: 11679, name: 'Axel Moises Caldera Garcia', tipo: 'Estudiante', area: 'Profesional', hora: '15:49:08' },
-    { matricula: 13678, name: 'Zarina Talamantes Alvarez', tipo: 'Profesor', area: 'Profesional', hora: '15:41:18' },
-    { matricula: 10678, name: 'Jorge Fernandez Fernandez', tipo: 'Empleado', area: 'Preparatoria', hora: '13:33:33' },
-    { matricula: 13567, name: 'Hiroshi Alvarez Morishita', tipo: 'Estudiante', area: 'Posgrado', hora: '13:29:08' },
-    { matricula: 14089, name: 'Stephania Ramos Nuñez', tipo: 'Estudiante', area: 'Profesional', hora: '15:55:49' },
-    { matricula: 12478, name: 'Alonso Caleb Payan Inzunza', tipo: 'Estudiante', area: 'Posgrado', hora: '11:57:46' },
-    { matricula: 12075, name: 'Nicolas Alejandro Escaroz Vazquez', tipo: 'Estudiante', area: 'Profesional', hora: '11:43:43' },
-    { matricula: 13760, name: 'Mario Alberto Barrera Rodriguez', tipo: 'Estudiante', area: 'Profesional', hora: '10:12:41' },
-  ];
-
-  const [data, setData] = useState(initialData);
+  const socket = useContext(SocketContext);
+  const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filter, setFilter] = useState('Todos');
   const [newVisitorName, setNewVisitorName] = useState('');
   const [showForm, setShowForm] = useState(false);
   const [visitorCounter, setVisitorCounter] = useState(1);
+
+  useEffect(() => {
+    const fetchIngresos = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/ingresos');
+        setData(response.data);
+      } catch (error) {
+        console.error('Error fetching ingresos:', error);
+      }
+    };
+
+    fetchIngresos();
+
+    const handleNuevoIngreso = (nuevoIngreso) => {
+      setData(prevData => [nuevoIngreso, ...prevData]);
+    };
+
+    socket.on('actualizarIngresos', handleNuevoIngreso);
+
+    return () => {
+      socket.off('actualizarIngresos', handleNuevoIngreso);
+    };
+  }, [socket]);
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -42,28 +46,40 @@ const Ingresos = () => {
     setNewVisitorName(event.target.value);
   };
 
-  const handleAddUser = () => {
+  const handleAddUser = async () => {
     const formattedMatricula = String(visitorCounter).padStart(5, '0');
     const newVisitor = {
       matricula: formattedMatricula,
-      name: newVisitorName,
+      nombre: newVisitorName,
       tipo: 'Visitante',
       area: '-',
       hora: new Date().toLocaleTimeString(),
     };
-    setData((prevData) => [newVisitor, ...prevData]);
-    setNewVisitorName('');
-    setShowForm(false);
-    setVisitorCounter((prevCounter) => prevCounter + 1);
+
+    try {
+      await axios.post('http://localhost:8080/api/ingresos', newVisitor);
+      socket.emit('nuevoIngreso', newVisitor);
+      setNewVisitorName('');
+      setShowForm(false);
+      setVisitorCounter((prevCounter) => prevCounter + 1);
+    } catch (error) {
+      console.error('Error guardando visitante:', error);
+    }
   };
 
-  const handleDeleteUser = (matricula) => {
-    setData((prevData) => prevData.filter((user) => user.matricula !== matricula));
+  const handleDeleteUser = async (matricula) => {
+    try {
+      await axios.delete(`http://localhost:8080/api/ingresos/${matricula}`);
+      setData((prevData) => prevData.filter((user) => user.matricula !== matricula));
+      socket.emit('deleteIngreso', matricula);
+    } catch (error) {
+      console.error('Error eliminando ingreso:', error);
+    }
   };
 
   const filteredData = data.filter((row) => {
     const matchesSearchTerm =
-      row.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      row.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
       row.matricula.toString().includes(searchTerm);
     const matchesFilter = filter === 'Todos' || row.tipo === filter;
 
@@ -140,7 +156,7 @@ const Ingresos = () => {
             {filteredData.map((row) => (
               <tr key={row.matricula} className="border-b dark:border-gray-700">
                 <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-extrabold">{row.matricula}</td>
-                <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">{row.name}</td>
+                <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">{row.nombre}</td>
                 <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">{row.tipo}</td>
                 <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">{row.area}</td>
                 <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">{row.hora}</td>
