@@ -1,54 +1,91 @@
 import React, { useEffect, useState } from "react";
+import axios from 'axios';
 
 const Tools = () => {
   const [students, setStudents] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState("");
-  const [filteredStudents, setFilteredStudents] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [editingStudent, setEditingStudent] = useState(null);
+  const [newStudent, setNewStudent] = useState({
+    matricula: '',
+    nombre: '',
+    carrera: ''
+  });
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/students"); //API KEY
-      const data = await response.json();
-      setStudents(data);
-    };
-    fetchData();
-  }, []);
+    fetchStudents();
+  }, [filter]);
 
-  useEffect(() => {
-    let filtered = students;  
-
-    if (filter) {
-      filtered = filtered.filter((student) => student.carrera === filter);
+  const fetchStudents = async () => {
+    try {
+      const url = filter
+        ? `http://localhost:8080/api/users/carrera/${filter}`
+        : 'http://localhost:8080/api/users';
+      const response = await axios.get(url);
+      setStudents(response.data);
+    } catch (error) {
+      console.error('Error fetching students:', error);
     }
-    if (searchTerm) {
-      filtered = filtered.filter((student) =>
-        `${student.matricula} ${student.nombre}`
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase())
-      );
-    }
-    setFilteredStudents(filtered);
-  }, [searchTerm, filter, students]);
-
-  const handleDelete = async (id) => {
-    await fetch(`http://localhost:3000/students/${id}`, {
-      method: "DELETE",
-    });
-    setStudents(students.filter((student) => student.id !== id));
   };
 
   const handleAdd = () => {
-    // Lógica para abrir un modal para agregar estudiante
+    setEditingStudent(null);
+    setNewStudent({ matricula: '', nombre: '', carrera: '' });
+    setShowModal(true);
   };
 
-  const handleEdit = (id) => {
-    // Lógica para abrir un modal para editar estudiante
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (editingStudent) {
+        await axios.put(`http://localhost:8080/api/users/${editingStudent.matricula}`, {
+          nombre: newStudent.nombre,
+          carrera: newStudent.carrera
+        });
+      } else {
+        await axios.post('http://localhost:8080/api/users', newStudent);
+      }
+      setShowModal(false);
+      setEditingStudent(null);
+      fetchStudents();
+      setNewStudent({ matricula: '', nombre: '', carrera: '' });
+    } catch (error) {
+      console.error('Error:', error);
+      alert(error.response?.data?.message || 'Error al guardar el estudiante');
+    }
   };
+
+  const handleEdit = (student) => {
+    setEditingStudent(student);
+    setNewStudent({
+      matricula: student.matricula,
+      nombre: student.nombre,
+      carrera: student.carrera
+    });
+    setShowModal(true);
+  };
+
+  const handleDelete = async (matricula) => {
+    if (window.confirm('¿Estás seguro de que deseas eliminar este estudiante?')) {
+      try {
+        await axios.delete(`http://localhost:8080/api/users/${matricula}`);
+        setStudents(students.filter(student => student.matricula !== matricula));
+      } catch (error) {
+        console.error('Error deleting student:', error);
+        alert('Error al eliminar el estudiante');
+      }
+    }
+  };
+
+  const filteredStudents = students.filter((student) =>
+    `${student.matricula} ${student.nombre}`
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="container mx-auto px-6 py-8 min-h-screen flex flex-col">
-      {/* Controles de Filtro y Búsqueda */}
       <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between">
         <input
           type="text"
@@ -80,7 +117,68 @@ const Tools = () => {
         </div>
       </div>
 
-      {/* Tabla de Estudiantes */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg w-96">
+            <h2 className="text-xl mb-4 dark:text-white">
+              {editingStudent ? 'Editar Estudiante' : 'Agregar Estudiante'}
+            </h2>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input
+                type="text"
+                placeholder="Matrícula"
+                value={newStudent.matricula}
+                onChange={(e) => setNewStudent({ ...newStudent, matricula: e.target.value })}
+                className="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                disabled={editingStudent}
+                required
+              />
+              <input
+                type="text"
+                placeholder="Nombre"
+                value={newStudent.nombre}
+                onChange={(e) => setNewStudent({ ...newStudent, nombre: e.target.value })}
+                className="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                required
+              />
+              <select
+                value={newStudent.carrera}
+                onChange={(e) => setNewStudent({ ...newStudent, carrera: e.target.value })}
+                className="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                required
+              >
+                <option value="">Seleccionar carrera</option>
+                <option value="ISW">ISW</option>
+                <option value="IMEC">IMEC</option>
+                <option value="IER">IER</option>
+                <option value="IIND">IIND</option>
+                <option value="IDGD">IDGD</option>
+                <option value="LINI">LINI</option>
+              </select>
+              <div className="flex justify-end space-x-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowModal(false);
+                    setEditingStudent(null);
+                    setNewStudent({ matricula: '', nombre: '', carrera: '' });
+                  }}
+                  className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                >
+                  {editingStudent ? 'Actualizar' : 'Guardar'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       <div className="shadow-md rounded-lg overflow-hidden flex-1">
         <table className="min-w-full bg-white dark:bg-gray-100">
           <thead className="bg-gray-50 dark:bg-black">
@@ -98,10 +196,10 @@ const Tools = () => {
                   <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-extrabold">{student.matricula}</td>
                   <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">{student.nombre}</td>
                   <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">{student.carrera}</td>
-                  <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">
+                  <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold space-x-2">
                     <button
                       className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 dark:bg-yellow-600 dark:hover:bg-yellow-700 transition duration-200 ease-in-out transform hover:scale-105 focus:ring-2"
-                      onClick={() => handleEdit(student.matricula)}
+                      onClick={() => handleEdit(student)}
                     >
                       Editar
                     </button>
@@ -116,7 +214,7 @@ const Tools = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="4" className="text-center py-4 text-gray-500 dark:text-black ">
+                <td colSpan="4" className="text-center py-4 text-gray-500 dark:text-black">
                   No se encontraron estudiantes.
                 </td>
               </tr>

@@ -1,5 +1,15 @@
 import express from 'express';
-import { selectAll, searchUser, insertUser, insertIngreso, getIngresos } from '../controllers/notesController.js'
+import {
+    selectAll,
+    searchUser,
+    insertUser,
+    insertIngreso,
+    getIngresos,
+    getUsersByCarrera,
+    deleteUser,
+    updateUser,
+    deleteIngreso
+} from '../controllers/notesController.js'
 
 const router = express.Router();
 
@@ -10,6 +20,16 @@ router.get('/users', async (req, res) => {
     } catch (err) {
         res.status(500).send('Server error');
         throw err;
+    }
+});
+
+router.get('/users/carrera/:carrera?', async (req, res) => {
+    try {
+        const carrera = req.params.carrera;
+        const users = await getUsersByCarrera(carrera);
+        res.json(users);
+    } catch (err) {
+        res.status(500).send('Server error');
     }
 });
 
@@ -55,6 +75,43 @@ router.get('/ingresos', async (req, res) => {
     } catch (err) {
         res.status(500).send('Server error');
         throw err;
+    }
+});
+
+router.delete('/users/:matricula', async (req, res) => {
+    try {
+        const result = await deleteUser(req.params.matricula);
+        if (!result) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+        res.json(result);
+    } catch (err) {
+        res.status(500).send('Server error');
+    }
+});
+
+router.put('/users/:matricula', async (req, res) => {
+    try {
+        const { nombre, carrera } = req.body;
+        const result = await updateUser(req.params.matricula, nombre, carrera);
+        if (!result) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+        res.json(result);
+    } catch (err) {
+        res.status(500).send('Server error');
+    }
+});
+
+router.delete('/ingresos/:matricula', async (req, res) => {
+    try {
+        const result = await deleteIngreso(req.params.matricula);
+        if (!result) {
+            return res.status(404).json({ message: 'Ingreso no encontrado' });
+        }
+        res.json(result);
+    } catch (err) {
+        res.status(500).send('Server error');
     }
 });
 

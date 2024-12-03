@@ -68,12 +68,15 @@ const Ingresos = () => {
   };
 
   const handleDeleteUser = async (matricula) => {
-    try {
-      await axios.delete(`http://localhost:8080/api/ingresos/${matricula}`);
-      setData((prevData) => prevData.filter((user) => user.matricula !== matricula));
-      socket.emit('deleteIngreso', matricula);
-    } catch (error) {
-      console.error('Error eliminando ingreso:', error);
+    if (window.confirm('¿Estás seguro de que deseas eliminar este registro?')) {
+      try {
+        await axios.delete(`http://localhost:8080/api/ingresos/${matricula}`);
+        setData((prevData) => prevData.filter((user) => user.matricula !== matricula));
+        socket.emit('deleteIngreso', matricula);
+      } catch (error) {
+        console.error('Error eliminando ingreso:', error);
+        alert('Error al eliminar el ingreso');
+      }
     }
   };
 
@@ -147,7 +150,7 @@ const Ingresos = () => {
               <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]">Matricula</th>
               <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]">Nombre</th>
               <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]">Tipo</th>
-              <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]">Escuela</th>
+              <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]">Carrera</th>
               <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]">Hora</th>
               <th className="py-2 px-4 text-left text-sm font-medium text-gray-900 dark:text-[#FFD000]"></th>
             </tr>
@@ -158,7 +161,7 @@ const Ingresos = () => {
                 <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-extrabold">{row.matricula}</td>
                 <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">{row.nombre}</td>
                 <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">{row.tipo}</td>
-                <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">{row.area}</td>
+                <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">{row.carrera}</td>
                 <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">{row.hora}</td>
                 <td className="py-2 px-4 text-sm text-gray-900 dark:text-black font-semibold">
                   <button

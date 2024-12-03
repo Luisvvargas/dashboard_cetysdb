@@ -89,11 +89,58 @@ export async function insertIngreso(matricula, nombre, tipo, area) {
 
 export async function getIngresos() {
     try {
-        const query = "SELECT * FROM ingresos ORDER BY hora DESC LIMIT 50";
+        const query = `
+            SELECT i.*, u.carrera 
+            FROM ingresos i 
+            LEFT JOIN usuario u ON i.matricula = u.matricula 
+            ORDER BY i.hora DESC LIMIT 50
+        `;
         const res = await client.query(query);
         return res.rows;
     } catch (err) {
         console.error('Query error', err.stack);
+        throw err;
+    }
+}
+
+export async function getUsersByCarrera(carrera) {
+    try {
+        const query = carrera ? "SELECT * FROM usuario WHERE carrera = $1" : "SELECT * FROM usuario";
+        const values = carrera ? [carrera] : [];
+        const res = await client.query(query, values);
+        return res.rows;
+    } catch (err) {
+        console.error('Query error', err.stack);
+        throw err;
+    }
+}
+
+export async function deleteUser(matricula) {
+    try {
+        const query = "DELETE FROM usuario WHERE matricula = $1 RETURNING *";
+        const res = await client.query(query, [matricula]);
+        return res.rows[0];
+    } catch (err) {
+        throw err;
+    }
+}
+
+export async function updateUser(matricula, nombre, carrera) {
+    try {
+        const query = "UPDATE usuario SET nombre = $2, carrera = $3 WHERE matricula = $1 RETURNING *";
+        const res = await client.query(query, [matricula, nombre, carrera]);
+        return res.rows[0];
+    } catch (err) {
+        throw err;
+    }
+}
+
+export async function deleteIngreso(matricula) {
+    try {
+        const query = "DELETE FROM ingresos WHERE matricula = $1 RETURNING *";
+        const res = await client.query(query, [matricula]);
+        return res.rows[0];
+    } catch (err) {
         throw err;
     }
 }
