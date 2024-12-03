@@ -9,6 +9,7 @@ import ReportesApp from './Empleados/ReportesApp';
 import LoginForm from './Login/LoginForm'; //MAIN LOGIN opc
 import Unumber from './Usuarios/unumber';
 import Welcome from './Usuarios/welcome';
+import ToolsApp from './Empleados/ToolsApp';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <Route path='/welcome' element={<Welcome/>}/>
         <Route path='/reportes' element={<ReportesApp/>}/>
         <Route path='/ingresos' element={<IngresosApp/>}/>
-        <Route path='/Tools' element={<IngresosApp/>}/>
+        <Route path='/Tools' element={<ToolsApp/>}/>
 
       </Routes>
     </BrowserRouter>

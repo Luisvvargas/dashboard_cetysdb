@@ -14,9 +14,9 @@ const LoginForm = () => {
       <div className="wrapper">
         <form>
           <h1>Login</h1>
-          <div className="BAdmin">
+          {/* <div className="BAdmin">
               <button onClick={()=> navigate('/Empleado')}>Administrador</button>
-          </div>
+          </div> */}
           <div className="BTrabajador">
             <button onClick={() => navigate('/Empleado')}>Empleado</button>
           </div>
