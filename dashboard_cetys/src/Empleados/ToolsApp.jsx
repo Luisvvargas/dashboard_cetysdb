@@ -1,7 +1,7 @@
 import NB from "../NavBar"
 import Tools from "./Tools"
 
-function ReportesApp(){
+function ToolsApp(){
     return(
         <div className="flex">
             <NB></NB>
@@ -9,4 +9,4 @@ function ReportesApp(){
         </div>
     )
 }
-export default ReportesApp;
+export default ToolsApp;
