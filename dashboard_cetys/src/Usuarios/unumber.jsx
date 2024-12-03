@@ -73,7 +73,7 @@ function Unumber() {
         inputRef.current.value = '';
         inputRef.current.blur();
       } catch (error) {
-        setError('Failed to fetch user data');
+        setError('MATRICULA NO ENCONTRADA');
       }
     }
   };
